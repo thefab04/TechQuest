@@ -100,7 +100,6 @@ return (
 )}
 
 
-
           {/* Handle either 'mission' or 'missions' */}
           <p>
             <strong>Mission:</strong> {stage.mission || stage.missions || "No mission defined"}
