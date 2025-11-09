@@ -20,10 +20,7 @@ function Home() {
  
   return (
 <>
-    <div >
-      <p id="welcometext">Hi there! </p>
-       <p id="paratext">  Every click brings you one step closer to success.</p>
-</div>
+
      
 
 
@@ -39,7 +36,6 @@ function Home() {
 </div>
 
   <div className="glass3">
-  <h5 id="rolehead1"></h5>
      <ResumeBuilder />
 
       </div>
@@ -52,10 +48,16 @@ function Home() {
 
 <rolespart className="rolespart">
 
+      <div >
+      <p id="welcometext">Hi there! </p>
+       <p id="paratext">  Every click brings you one step closer to success.</p>
+</div>
 
-<h4 id="rolehead">Explore Roadmaps</h4>
+<br /><br /><br /><br /><br /><br />
+
 <div className="glass2">
 
+<h6 id="role-heading">Explore Roadmaps</h6>
     
 <h2 id="role-heading">DEVELOPER ROLES</h2>
       <div className="roadmap-container">

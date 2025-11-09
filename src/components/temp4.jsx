@@ -4,35 +4,39 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
     style={{
       width: "210mm",
       minHeight: "297mm",
-      margin: "20px auto",
-      padding: "30px",
+      margin: "2.5cm", // uniform margin
+      padding: "2.5cm",
       border: "1px solid #000",
       fontFamily: "'Helvetica Neue', Arial, sans-serif",
       backgroundColor: "#fff",
       color: "#333",
       boxSizing: "border-box",
+      lineHeight: "1.6", // slightly more spacing
+      fontSize: "15px", // base font bigger
+        overflowWrap: 'break-word',   // <-- this ensures long words break into next line
+  wordBreak: 'break-word'
     }}
   >
     {/* Header */}
-    <div style={{ textAlign: "center", marginBottom: "30px", borderBottom: "2px solid #007BFF", paddingBottom: "10px" }}>
-      <h1 style={{ margin: 0, fontSize: "28px", color: "#007BFF" }}>{basicInfo.name}</h1>
-      <p style={{ margin: "5px 0", fontStyle: "italic", fontSize: "16px" }}>{basicInfo.tagline}</p>
-      <p style={{ margin: "3px 0", fontSize: "14px" }}>{basicInfo.portfolio} | {basicInfo.mobile}</p>
+    <div style={{ textAlign: "center", marginBottom: "35px", borderBottom: "2px solid #007BFF", paddingBottom: "12px" }}>
+      <h1 style={{ margin: 0, fontSize: "32px", color: "#007BFF" }}>{basicInfo.name}</h1>
+      <p style={{ margin: "6px 0", fontStyle: "italic", fontSize: "18px" }}>{basicInfo.tagline}</p>
+      <p style={{ margin: "4px 0", fontSize: "15px" }}>{basicInfo.portfolio} | {basicInfo.mobile}</p>
     </div>
 
     {/* Skills */}
-    <section style={{ marginBottom: "20px" }}>
-      <h2 style={{ fontSize: "18px", borderBottom: "1px solid #ccc", paddingBottom: "5px" }}>Skills</h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "10px" }}>
+    <section style={{ marginBottom: "25px" }}>
+      <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px" }}>Skills</h2>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginTop: "12px" }}>
         {skills.map((s, i) => (
           <span
             key={i}
             style={{
-              padding: "5px 10px",
+              padding: "6px 12px",
               backgroundColor: "#007BFF",
               color: "#fff",
               borderRadius: "20px",
-              fontSize: "13px",
+              fontSize: "14px",
             }}
           >
             {s}
@@ -42,16 +46,16 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
     </section>
 
     {/* Objective */}
-    <section style={{ marginBottom: "20px" }}>
-      <h2 style={{ fontSize: "18px", borderBottom: "1px solid #ccc", paddingBottom: "5px" }}>Objective</h2>
-      <p style={{ marginTop: "10px", fontSize: "14px" }}>{basicInfo.objective}</p>
+    <section style={{ marginBottom: "25px" }}>
+      <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px" }}>Objective</h2>
+      <p style={{ marginTop: "12px", fontSize: "15px" }}>{basicInfo.objective}</p>
     </section>
 
     {/* Education */}
-    <section style={{ marginBottom: "20px" }}>
-      <h2 style={{ fontSize: "18px", borderBottom: "1px solid #ccc", paddingBottom: "5px" }}>Education</h2>
+    <section style={{ marginBottom: "25px" }}>
+      <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px" }}>Education</h2>
       {education.map((edu, i) => (
-        <div key={i} style={{ marginTop: "10px", fontSize: "14px" }}>
+        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
           <strong>{edu.school}</strong> | {edu.degree} | {edu.cgpa}
         </div>
       ))}
@@ -59,11 +63,11 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
 
     {/* Projects / Experience */}
     <section>
-      <h2 style={{ fontSize: "18px", borderBottom: "1px solid #ccc", paddingBottom: "5px" }}>Projects / Experience</h2>
+      <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px", marginBottom: "12px" }}>Projects / Experience</h2>
       {projects.map((p, i) => (
-        <div key={i} style={{ marginTop: "10px", fontSize: "14px" }}>
+        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
           <strong>{p.title}</strong>
-          <p style={{ margin: "3px 0" }}>{p.desc}</p>
+          <p style={{ margin: "4px 0" }}>{p.desc}</p>
         </div>
       ))}
     </section>

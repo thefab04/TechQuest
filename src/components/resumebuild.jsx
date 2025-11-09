@@ -58,48 +58,60 @@ const previewInNewPage = () => {
 
   const previewWindow = window.open("", "_blank");
   previewWindow.document.write(`
-    <html>
-      <head>
-        <title>Resume Preview</title>
-        <style>
-          body { margin: 0; padding: 20px; font-family: Arial, sans-serif; background: #f0f0f0; }
-          .toolbar {
-            position: sticky;
-            top: 0;
-            background: white;
-            padding: 10px;
-            text-align: right;
-            border-bottom: 1px solid #ccc;
-          }
-          button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-          }
-          button:hover {
-            background-color: #0056b3;
-          }
-          .a4-sheet {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 20px auto;
-            background: white;
-            padding: 30px;
-            box-sizing: border-box;
-            box-shadow: 0 0 8px rgba(0,0,0,0.2);
-          }
-        </style>
-      </head>
-      <body>
-        <div class="toolbar">
-          <button id="downloadBtn">Download PDF</button>
-        </div>
-        <div id="resume-root" class="a4-sheet"></div>
-      </body>
-    </html>
+<html>
+  <head>
+    <title>Resume Preview</title>
+    <style>
+      body { 
+        margin: 0; 
+        padding: 40px; 
+        font-family: Arial, sans-serif; 
+        background: #f0f0f0; 
+      }
+      .toolbar {
+        position: sticky;
+        top: 0;
+        background: white;
+        padding: 10px;
+        text-align: right;
+        border-bottom: 1px solid #ccc;
+      }
+      button {
+        background-color: #95afcbff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #6c89a8ff;
+      }
+      .a4-sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 20px auto;
+        background: white;
+        padding: 2.5cm; /* 2.5 cm margin all around */
+        box-sizing: border-box;
+        box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        font-size: 16px; /* slightly bigger font */
+        line-height: 1.5; /* better readability */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button id="downloadBtn">Download PDF</button>
+    </div>
+    <div id="resume-root" class="a4-sheet">
+      <!-- Your resume content goes here -->
+      <h1>John Doe</h1>
+      <p>Full Stack Developer with 3 years of experience in web development and cloud technologies.</p>
+    </div>
+  </body>
+</html>
+
   `);
 
   // Wait for DOM to load before rendering
