@@ -20,16 +20,24 @@ const Suggestion = () => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:5000/api/feedback", {
+      const response = await fetch("http://localhost:5000/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      setFormData({ name: "", email: "", message: "", type: "comment" });
-      fetchFeedback();
+      if (response.ok) {
+        console.log("Feedback submitted successfully");
+        setFormData({ name: "", email: "", message: "", type: "comment" });
+        fetchFeedback();
+      } else {
+        const errorData = await response.json();
+        console.error("Error submitting feedback:", errorData);
+        alert("Failed to submit feedback: " + errorData.message);
+      }
     } catch (error) {
       console.error("Error submitting feedback:", error);
+      alert("Error submitting feedback: " + error.message);
     }
   };
 
@@ -37,8 +45,13 @@ const Suggestion = () => {
   const fetchFeedback = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/feedback");
-      const data = await res.json();
-      setFeedbackList(data);
+      if (res.ok) {
+        const data = await res.json();
+        setFeedbackList(data);
+        console.log("Fetched feedback:", data);
+      } else {
+        console.error("Error fetching feedback:", res.statusText);
+      }
     } catch (error) {
       console.error("Error loading feedback:", error);
     }

@@ -1,0 +1,3 @@
+- [x] Fix DB connection env var in backend/server.js to use MONGO_URI with fallback to MONGO_URL
+- [x] Add logout button to src/components/Navbar.jsx
+- [ ] Test login multiple times after changes

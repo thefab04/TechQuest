@@ -15,8 +15,9 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+      const res = await axios.post(`${apiUrl}/api/auth/login`, {
         emailOrMobile,
         password,
       });
@@ -31,6 +32,7 @@ function Login() {
       alert(res.data.message || "Login successful!");
       setTimeout(() => navigate("/"), 1500);
     } catch (err) {
+      console.error('Login error:', err);
       alert(err.response?.data?.message || "Login failed!");
     }
   };

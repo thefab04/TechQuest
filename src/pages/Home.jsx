@@ -6,6 +6,7 @@ import ResumeBuilder from "../components/resumebuild";
 import Suggestion from "../components/suggestion";
 import About from "./About";
 import ProgressPieChart from "../components/ProgressPieChart";
+import { useAuth } from "../context/AuthContext";
 
 // Define total levels for each role
 const roleLevels = {
@@ -32,26 +33,32 @@ const Home = () => {
   const [username, setUsername] = useState("");
   const [progress, setProgress] = useState([]);
   const navigate = useNavigate();
+  const { isGuest } = useAuth();
 
   /*const user = JSON.parse(localStorage.getItem("user") || "null");*/
   const storedUser = localStorage.getItem("user");
   const user = storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null;
 
   useEffect(() => {
-    // Get username from localStorage (or user object)
-    const storedName = localStorage.getItem("username");
-    if (storedName) setUsername(storedName);
-    else if (user?.name) setUsername(user.name);
-    else setUsername(""); // Ensure it's empty if nothing is found
+    if (isGuest) {
+      setUsername("Guest");
+      setProgress([]); // No progress for guest
+    } else {
+      // Get username from localStorage (or user object)
+      const storedName = localStorage.getItem("username");
+      if (storedName) setUsername(storedName);
+      else if (user?.name) setUsername(user.name);
+      else setUsername(""); // Ensure it's empty if nothing is found
 
-    // Fetch user progress if logged in
-    if (user?._id) {
-      fetch(`http://localhost:5000/api/progress/${user._id}`)
-        .then((res) => res.json())
-        .then((data) => setProgress(data))
-        .catch((err) => console.error("Error fetching progress:", err));
+      // Fetch user progress if logged in
+      if (user?._id) {
+        fetch(`http://localhost:5000/api/progress/${user._id}`)
+          .then((res) => res.json())
+          .then((data) => setProgress(data))
+          .catch((err) => console.error("Error fetching progress:", err));
+      }
     }
-  }, []);
+  }, [isGuest, user]);
 
   const handleClick = (role) => {
     navigate(`/roadmap/${encodeURIComponent(role)}`);
@@ -76,7 +83,7 @@ const Home = () => {
 
         <rolespart className="rolespart">
           <div>
-            <p id="welcometext">Hello, {username ? username : "Guest..!"}</p>
+            <p id="welcometext">Hello, {username || "Guest"}</p>
             <h5 id="paratext">Welcome to Tech Quest</h5>
             <p id="paratext">Every click brings you one step closer to success.</p>
 

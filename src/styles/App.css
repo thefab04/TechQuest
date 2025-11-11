@@ -17,6 +17,8 @@
   margin-top: 20px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between; /* 👈 this aligns logout to right */
+  align-items: center; /* vertically center everything */
 }
 .glassfooter{
   text-align: center;
@@ -42,6 +44,11 @@ justify-content: center;
   flex-direction: row;
   gap: 10px;
 }
+
+.animated-button1{
+  margin-left: 20px;
+}
+
 
 .logo{
   margin-left:20px ;

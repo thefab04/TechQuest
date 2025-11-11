@@ -67,6 +67,7 @@ function Roadmap() {
     }
   } catch (err) {
     console.error(err);
+    alert("Failed to save progress. Please try again.");
   }
 };
 
@@ -141,13 +142,13 @@ function Roadmap() {
 
 
             <button
-  className="start-btn"
+  className="animated-button3"
   onClick={(e) => {
     e.stopPropagation();
     handleProgress(index + 1); // passing level number
   }}
 >
-  Mark Level {index + 1} as Complete
+Level {index + 1} Completed
 </button>
 
 
