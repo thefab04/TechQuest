@@ -52,7 +52,7 @@ function Roadmap() {
   if (!user) return alert("Please log in to save progress");
 
   try {
-    const response = await fetch("http://localhost:5000/api/progress/update", {
+    const response = await fetch("https://techquest-backend.onrender.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

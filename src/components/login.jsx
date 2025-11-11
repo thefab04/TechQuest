@@ -15,7 +15,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    const apiUrl = process.env.REACT_APP_API_URL || 'https://techquest-backend.onrender.com';
     try {
       const res = await axios.post(`${apiUrl}/api/auth/login`, {
         emailOrMobile,

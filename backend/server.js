@@ -15,7 +15,7 @@ const app = express();
 
 // ✅ Step 1: Enable CORS **before** anything else
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: ["https://techquest-backend.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
