@@ -52,7 +52,7 @@ const Home = () => {
 
       // Fetch user progress if logged in
       if (user?._id) {
-        fetch(`http://localhost:5000/api/progress/${user._id}`)
+        fetch(`https://techquest-backend.onrender.com/api/progress/${user._id}`)
           .then((res) => res.json())
           .then((data) => setProgress(data))
           .catch((err) => console.error("Error fetching progress:", err));
