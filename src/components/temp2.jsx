@@ -4,7 +4,7 @@ export const Template2 = ({ basicInfo, skills, education, projects }) => (
     style={{
       width: "210mm",
       minHeight: "297mm",
-      margin: "2.5cm", // uniform margin on all sides
+      margin: 0, // uniform margin on all sides
       padding: "2.5cm", // padding inside for spacing
       border: "1px solid black",
       boxSizing: "border-box",
@@ -22,7 +22,12 @@ export const Template2 = ({ basicInfo, skills, education, projects }) => (
       <h1 style={{ margin: "0", fontSize: "32px" }}>{basicInfo.name}</h1>
       <p style={{ margin: "3px 0", fontStyle: "italic", fontSize: "18px", color: "#555" }}>{basicInfo.tagline}</p>
       <p style={{ margin: "3px 0", fontSize: "15px" }}>{basicInfo.portfolio} | {basicInfo.mobile}</p>
-      <p style={{ margin: "3px 0", fontSize: "15px" }}>{basicInfo.dob} | {basicInfo.address}</p>
+      <p style={{ margin: "3px 0", fontSize: "15px" }}></p>
+<p style={{ margin: "3px 0", fontSize: "15px" }}>
+  {basicInfo.dob ? new Date(basicInfo.dob).toLocaleDateString('en-GB') : ""}
+  {basicInfo.address ? ` | ${basicInfo.address}` : ""}
+</p>
+
     </div>
 
     {/* Body */}

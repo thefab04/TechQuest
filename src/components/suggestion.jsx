@@ -135,7 +135,10 @@ const Suggestion = () => {
         {feedbackList.length === 0 ? (
           <p className="text-gray-500">No feedback yet.</p>
         ) : (
-          feedbackList.map((f) => (
+          feedbackList
+          .slice(-3)
+          .reverse()
+          .map((f) => (
             <div
               key={f._id}
               className="border p-3 rounded-lg mb-2 bg-gray-50 shadow-sm"

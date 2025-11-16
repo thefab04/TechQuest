@@ -6,8 +6,8 @@ import { Template2 } from "./temp2";
 import { Template3 } from "./temp3";
 import { Template4 } from "./temp4";
 import { Template5 } from "./temp5";
-
-
+import ReactDOMServer from "react-dom/server";
+import Note from "./Note";
 const templates = { Template1, Template2, Template3, Template4, Template5 };
 
 const ResumeBuilder = () => {
@@ -56,68 +56,66 @@ const ResumeBuilder = () => {
 const previewInNewPage = () => {
   const SelectedTemplateComponent = templates[selectedTemplate];
 
+  // Open a new window
   const previewWindow = window.open("", "_blank");
-  previewWindow.document.write(`
-<html>
-  <head>
-    <title>Resume Preview</title>
-    <style>
-      body { 
-        margin: 0; 
-        padding: 40px; 
-        font-family: Arial, sans-serif; 
-        background: #f0f0f0; 
-      }
-      .toolbar {
-        position: sticky;
-        top: 0;
-        background: white;
-        padding: 10px;
-        text-align: right;
-        border-bottom: 1px solid #ccc;
-      }
-      button {
-        background-color: #95afcbff;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #6c89a8ff;
-      }
-      .a4-sheet {
-        width: 210mm;
-        min-height: 297mm;
-        margin: 20px auto;
-        background: white;
-        padding: 2.5cm; /* 2.5 cm margin all around */
-        box-sizing: border-box;
-        box-shadow: 0 0 8px rgba(0,0,0,0.2);
-        font-size: 16px; /* slightly bigger font */
-        line-height: 1.5; /* better readability */
-      }
-    </style>
-  </head>
-  <body>
-    <div class="toolbar">
-      <button id="downloadBtn">Download PDF</button>
-    </div>
-    <div id="resume-root" class="a4-sheet">
-      <!-- Your resume content goes here -->
-      <h1>John Doe</h1>
-      <p>Full Stack Developer with 3 years of experience in web development and cloud technologies.</p>
-    </div>
-  </body>
-</html>
 
-  `);
+  // Base HTML structure
+previewWindow.document.write(`
+  <html>
+    <head>
+      <title>Resume Preview</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 40px 0;
+          background: #f0f0f0;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          min-height: 100vh;
+          font-family: Arial, sans-serif;
+           overflow: "hidden"
+        }
 
-  // Wait for DOM to load before rendering
+        .a4-sheet {
+          width: 210mm;
+          min-height: 297mm;
+          max-height: 297mm;
+           overflow: "hidden";
+          padding: 0mm;
+          background: white;
+          box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+      </style>
+
+      <style>
+        ${Array.from(document.styleSheets)
+          .map((sheet) => {
+            try {
+              return Array.from(sheet.cssRules)
+                .map((rule) => rule.cssText)
+                .join("");
+            } catch (e) {
+              return "";
+            }
+          })
+          .join("")}
+      </style>
+    </head>
+
+    <body>
+      <div id="resume-root" class="a4-sheet"></div>
+    </body>
+  </html>
+`);
+
+  previewWindow.document.close();
+
+  // Render React after DOM is ready
   setTimeout(() => {
     const container = previewWindow.document.getElementById("resume-root");
     const root = ReactDOM.createRoot(container);
+
     root.render(
       <SelectedTemplateComponent
         basicInfo={basicInfo}
@@ -126,28 +124,17 @@ const previewInNewPage = () => {
         projects={projects}
       />
     );
-    
-  }, 300);
-  };
+  }, 200);
+};
 
 
     // Add Download functionality
-    const downloadPDF = () => {
+
+
+const downloadPDF = () => {
   const SelectedTemplateComponent = templates[selectedTemplate];
 
-  // Create a hidden container in DOM to render the resume temporarily
-  const hiddenDiv = document.createElement("div");
-  hiddenDiv.style.position = "absolute";
-  hiddenDiv.style.left = "-9999px";
-  hiddenDiv.style.top = "0";
-  hiddenDiv.style.width = "210mm";
-  hiddenDiv.style.minHeight = "297mm";
-  hiddenDiv.style.padding = "30px";
-  hiddenDiv.style.background = "white";
-  document.body.appendChild(hiddenDiv);
-
-  const root = ReactDOM.createRoot(hiddenDiv);
-  root.render(
+  const htmlString = ReactDOMServer.renderToString(
     <SelectedTemplateComponent
       basicInfo={basicInfo}
       skills={skills}
@@ -156,40 +143,59 @@ const previewInNewPage = () => {
     />
   );
 
-  setTimeout(() => {
-    const opt = {
-      margin: 0,
-      filename: `${basicInfo.name || "resume"}.pdf`,
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-    };
+  const container = document.createElement("div");
+  container.className = "pdf-wrapper";   // ← add wrapper
+  container.innerHTML = htmlString;
+  document.body.appendChild(container);
 
-    html2pdf()
-      .from(hiddenDiv)
-      .set(opt)
-      .save()
-      .then(() => {
-        // Cleanup after saving
-        document.body.removeChild(hiddenDiv);
-      });
-  }, 500);
+  const opt = {
+    margin: 0,
+    filename: `${basicInfo.name || "resume"}.pdf`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
+
+  html2pdf()
+    .set(opt)
+    .from(container)
+    .save()
+    .then(() => document.body.removeChild(container));
 };
 
 
 
 
   return (
-    <div>
-      <h2 id="role-heading"> CREATE YOUR RESUME  </h2>
-<br />
-      {/* Form */}
-      <form onSubmit={(e) => e.preventDefault()}>
+    <div className="resume-builder-container">
+      {/* Left Side Notes */}
+      <div className="left-notes">
+        <Note title="" content="Keep your resume concise. Aim for 1 page if possible." />
+        <Note title="Name" content="Enter your full name as you want it to appear on your resume."/>
+      
+        <Note title="Portfolio / Website" content={ <>Add a link to your personal website, GitHub, LinkedIn, or project portfolio. <br /><br />
+        (If you don’t have one, you can leave it blank.) </> } />
+        <Note title="Skills" content={ <>List the technical or soft skills you know. Keep them short and specific.<br /><br />
+        Examples: HTML, CSS, React, Python, MS Excel, Communication, Problem Solving.</> }/>
+        <Note title="Project Role" content={ <>ention what you contributed or what position you held.<br /><br />
+        Examples: Frontend Developer, Backend Developer, Team Lead, Tester.</>}/>
+        <Note title="Description" content="Write 2–3 lines about what the project does and what tasks you handled."/>
+        <Note title="Template 1" content="Simple and clean. Perfect for beginners or freshers with limited details."/>
+        <Note title="Template 3" content="Advanced layout. Ideal for candidates with projects/experience, with a strong focus on skills."/>
+        <Note title="Template 5" content="Intermediate level template suited for users with multiple skills, projects, or achievements"/>
+      </div>
+
+      {/* Center Form */}
+      <div className="center-form">
+        <h2 id="role-heading"> CREATE YOUR RESUME  </h2>
+        <br />
+        {/* Form */}
+        <form onSubmit={(e) => e.preventDefault()} className="resumeform">
         <input name="name" placeholder="Name" value={basicInfo.name} onChange={handleBasicChange} required  className="inputbox" /><br /><br />
         <input name="tagline" placeholder="Title / Tagline" value={basicInfo.tagline} onChange={handleBasicChange}  className="inputbox"/><br /><br />
         <input name="portfolio" placeholder="Portfolio / Website" value={basicInfo.portfolio} onChange={handleBasicChange}  className="inputbox"/><br /><br />
         <input name="mobile" placeholder="Mobile" value={basicInfo.mobile} onChange={handleBasicChange}  className="inputbox"/><br /><br />
-        <input name="dob" placeholder="DOB" value={basicInfo.dob} onChange={handleBasicChange}  className="inputbox"/><br /><br />
+        <input name="dob" placeholder="DOB ( dd-mm-yyyy )" value={basicInfo.dob} onChange={handleBasicChange}  className="inputbox"/><br /><br />
         <input name="address" placeholder="Address" value={basicInfo.address} onChange={handleBasicChange}  className="inputbox"/><br /><br />
         <textarea name="objective" placeholder="Objective / Summary" value={basicInfo.objective} onChange={handleBasicChange}  className="inputbox"/><br /><br />
 
@@ -198,8 +204,8 @@ const previewInNewPage = () => {
         <span>
         {skills.map((skill, i) => (
           <div key={i}>
-            <input value={skill} onChange={e => handleSkillChange(i, e.target.value)} placeholder="Skill"  className="inputbox" />
-            <button type="button" onClick={() => removeSkill(i)} className="animated-button1">Remove</button>
+            <input value={skill} onChange={e => handleSkillChange(i, e.target.value)} placeholder="Skill"  className="inputbox" /> 
+            <button type="button" onClick={() => removeSkill(i)} className="animated-button1">Remove</button> <br /><br />
           </div>
           
         ))}</span>
@@ -213,7 +219,7 @@ const previewInNewPage = () => {
             <input value={edu.school} onChange={e => handleEduChange(i, "school", e.target.value)} placeholder="University / School"  className="inputbox" /><br /><br />  
             <input value={edu.degree} onChange={e => handleEduChange(i, "degree", e.target.value)} placeholder="Degree / Board" className="inputbox" /><br /><br />  
             <input value={edu.cgpa} onChange={e => handleEduChange(i, "cgpa", e.target.value)} placeholder="CGPA / %"  className="inputbox" /><br /><br />  
-            <button type="button" onClick={() => removeEdu(i)} className="animated-button1">Remove</button> <br />
+            <button type="button" onClick={() => removeEdu(i)} className="animated-button1">Remove</button> <br /><br /><br />
           </div>
         ))}
         <br />
@@ -260,12 +266,30 @@ const previewInNewPage = () => {
 
 <br /><br />
         {/* Preview button */}
-        <button type="button" onClick={previewInNewPage} className="animated-button">Preview Resume</button>
-      </form> <br />
-      <button type="button" onClick={downloadPDF} className="animated-button1">
+        <button type="button" onClick={previewInNewPage} className="animated-button">Preview Resume</button><br /><br />
+
+              <button type="button" onClick={downloadPDF} className="animated-button1">
   Download PDF
 </button>
+      </form>
+      </div>
 
+      {/* Right Side Notes */}
+      <div className="right-notes">
+
+          <Note title="Title / Tagline" content={<>A short one-line description of what you do or what role you’re applying for.<br /> <br />
+           Examples: “Frontend Developer”, “Accounting Student”, “Software Engineer Intern </> } />
+        <Note title="Address" content={ <> Write your current city and state. Full address is optional.<br /><br />
+        Example: “Bengaluru, Karnataka </>} />
+        <Note title="Objective / Summary" content={ <> Write 2–3 lines about your career goal or what you’re looking for.<br /><br />
+        Example: “Motivated fresher seeking a beginner-level developer role to apply skills and grow in a dynamic environment. </>} />
+        <Note title="University / School" content="Enter the name of your college, university, or school." />
+        <Note title="Degree / Board" content={ <>Mention the degree or board you studied under.<br /><br />
+        Examples: BCA, BSc CS, PU Board, CBSE, State Board.</>}/>
+        <Note title="CGPA / %" content="Enter your final or current score. If not completed yet, mention your latest score"/>
+        <Note title="Template 2" content="Slightly advanced. Best if you have projects or work experience to showcase"/>
+        <Note title="Template 4" content="Basic design that’s easy to fill. Great choice for beginners and students."/>
+      </div>
     </div>
   );
 };

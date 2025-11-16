@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import ForgotPassword from "./ForgotPassword";
 import "../styles/components.css";
 import tplogo from "../assets/tplogo_white_png.png";
 
@@ -9,13 +10,15 @@ import tplogo from "../assets/tplogo_white_png.png";
 function Login() {
   const [emailOrMobile, setEmailOrMobile] = useState("");
   const [password, setPassword] = useState("");
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const navigate = useNavigate();
   const { login, guestLogin } = useAuth();
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const apiUrl = process.env.REACT_APP_API_URL || 'https://techquest-backend.onrender.com';
+    const apiUrl = process.env.REACT_APP_API_URL || 'https://localhost:5000';
+    //const apiUrl = process.env.REACT_APP_API_URL || 'https://techquest-backend.onrender.com';
     try {
       const res = await axios.post(`${apiUrl}/api/auth/login`, {
         emailOrMobile,
@@ -81,6 +84,11 @@ function Login() {
 
         <br />
         <p>
+          <button onClick={() => setShowForgotPassword(true)} className="animated-button1">
+            Forgot Password?
+          </button>
+        </p>
+        <p>
           Don’t have an account? <Link to="/Signup">Sign up</Link>
         </p>
 
@@ -89,6 +97,9 @@ function Login() {
           Login as Guest
         </button>
       </div>
+      {showForgotPassword && (
+        <ForgotPassword onClose={() => setShowForgotPassword(false)} />
+      )}
     </div>
   );
 }

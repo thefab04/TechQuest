@@ -4,8 +4,8 @@ export const Template5 = ({ basicInfo, skills, education, projects }) => (
     style={{
       width: "210mm",
       minHeight: "297mm",
-      margin: "2.5cm", // uniform page margin
-      padding: "2.5cm",
+      margin: "0cm", // uniform page margin
+      padding: "0cm",
       border: "1px solid #000",
       fontFamily: "'Helvetica Neue', Arial, sans-serif",
       backgroundColor: "#fff",
@@ -20,19 +20,40 @@ export const Template5 = ({ basicInfo, skills, education, projects }) => (
     }}
   >
     {/* Sidebar */}
-    <div style={{ width: "30%", padding: "2.5cm 20px", backgroundColor: "#f7f7f7", borderRight: "2px solid #007BFF" }}>
-      <h2 style={{ textAlign: "center", color: "#007BFF", fontSize: "22px", marginBottom: "20px" }}>{basicInfo.name}</h2>
-      <p style={{ textAlign: "center", fontStyle: "italic", fontSize: "16px" }}>{basicInfo.tagline}</p>
+    <div style={{ width: "40%", padding: "2.5cm 20px", backgroundColor: "#f7f7f7", borderRight: "2px solid #007BFF" }}>
+      <h1 style={{ textAlign: "left", color: "#007BFF", fontSize: "41px", marginBottom: "10px" }}>{basicInfo.name}</h1>
+      <p style={{ textAlign: "left", fontStyle: "italic", fontSize: "16px" }}>{basicInfo.tagline}</p>
 
       <section style={{ marginTop: "25px" }}>
         <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Contact</h3>
         <p style={{ fontSize: "15px", marginTop: "8px" }}>
           {basicInfo.portfolio}<br />
           {basicInfo.mobile}<br />
+          {basicInfo.dob ? new Date(basicInfo.dob).toLocaleDateString('en-GB') : ''}<br />
+
           {basicInfo.address}
         </p>
       </section>
+<br /><br /><br /><br /><br />
+            <section style={{ marginTop: "25px" }}>
+        <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Education</h3>
+        {education.map((edu, i) => (
+          <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
+            <strong>{edu.school}</strong> | {edu.degree} | {edu.cgpa}
+          </div>
+        ))}
+      </section>
 
+    </div>
+
+    {/* Main Content */}
+    <div style={{ width: "70%", padding: "2.5cm 20px",marginTop:"50px" }}>
+      <section>
+        <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Objective</h3>
+        <p style={{ marginTop: "12px", fontSize: "15px" }}>{basicInfo.objective}</p>
+      </section>
+
+      
       <section style={{ marginTop: "25px" }}>
         <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Skills</h3>
         <ul style={{ paddingLeft: "20px", marginTop: "8px" }}>
@@ -41,23 +62,8 @@ export const Template5 = ({ basicInfo, skills, education, projects }) => (
           ))}
         </ul>
       </section>
-    </div>
 
-    {/* Main Content */}
-    <div style={{ width: "70%", padding: "2.5cm 20px" }}>
-      <section>
-        <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Objective</h3>
-        <p style={{ marginTop: "12px", fontSize: "15px" }}>{basicInfo.objective}</p>
-      </section>
 
-      <section style={{ marginTop: "25px" }}>
-        <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Education</h3>
-        {education.map((edu, i) => (
-          <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
-            <strong>{edu.school}</strong> | {edu.degree} | {edu.cgpa}
-          </div>
-        ))}
-      </section>
 
       <section style={{ marginTop: "25px" }}>
         <h3 style={{ borderBottom: "1px solid #ccc", paddingBottom: "6px", fontSize: "18px" }}>Projects / Experience</h3>

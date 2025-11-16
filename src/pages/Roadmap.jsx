@@ -73,6 +73,11 @@ function Roadmap() {
 
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     // close on ESC
     const onKey = (e) => {
       if (e.key === "Escape") setActiveIndex(null);

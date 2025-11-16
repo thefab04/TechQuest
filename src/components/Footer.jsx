@@ -12,7 +12,7 @@ function Footer() {
 
         <div className="contactlist">
           <a
-            href="mailto:karthikvelu0415@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=karthikvelu0415@gmail.com&su=TechQuest%20Support"
             className="animated-button"
           >
              Email

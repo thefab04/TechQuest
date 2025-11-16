@@ -4,7 +4,7 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
     style={{
       width: "210mm",
       minHeight: "297mm",
-      margin: "2.5cm", // uniform margin
+      margin: "0cm", // uniform margin
       padding: "2.5cm",
       border: "1px solid #000",
       fontFamily: "'Helvetica Neue', Arial, sans-serif",
@@ -18,10 +18,17 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
     }}
   >
     {/* Header */}
-    <div style={{ textAlign: "center", marginBottom: "35px", borderBottom: "2px solid #007BFF", paddingBottom: "12px" }}>
-      <h1 style={{ margin: 0, fontSize: "32px", color: "#007BFF" }}>{basicInfo.name}</h1>
+    <div style={{ textAlign: "center", marginBottom: "35px", borderBottom: "2px solid #0062cbff", paddingBottom: "12px" }}>
+      <h1 style={{ margin: 0, fontSize: "32px", color: "#8697a9ff" }}>{basicInfo.name}</h1>
       <p style={{ margin: "6px 0", fontStyle: "italic", fontSize: "18px" }}>{basicInfo.tagline}</p>
       <p style={{ margin: "4px 0", fontSize: "15px" }}>{basicInfo.portfolio} | {basicInfo.mobile}</p>
+      <p style={{ margin: "4px 0", fontSize: "15px" }}>
+  {basicInfo.dob
+    ? new Date(basicInfo.dob).toLocaleDateString('en-GB')
+    : ''}
+  {basicInfo.address && ` | ${basicInfo.address}`}
+</p>
+
     </div>
 
     {/* Skills */}
@@ -33,10 +40,11 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
             key={i}
             style={{
               padding: "6px 12px",
-              backgroundColor: "#007BFF",
-              color: "#fff",
+              backgroundColor: "#ffffffff",
+              color: "#000000ff",
               borderRadius: "20px",
               fontSize: "14px",
+              border: " solid black" ,  
             }}
           >
             {s}

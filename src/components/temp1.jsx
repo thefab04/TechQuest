@@ -1,11 +1,15 @@
 // Template1.jsx
 export const Template1 = ({ basicInfo, skills, education, projects }) => {
   return (
-    <div style={{
+    <div
+    className="resume-page"
+    style={{
       width: '210mm',        // A4 width
       minHeight: '297mm',    // A4 height
-      margin: '20px auto',
-      padding: '2.5cm',      // 2.5 cm padding all around
+      maxHeight: '297mm',
+       overflow: "hidden",
+      margin: '0px',
+      padding: '1.5cm',      // 2.5 cm padding all around
       fontFamily: 'Arial, sans-serif',
       background: 'white',
       color: '#333',
@@ -15,18 +19,25 @@ export const Template1 = ({ basicInfo, skills, education, projects }) => {
   wordBreak: 'break-word' ,
       fontSize: '16px',      // slightly bigger default font
       lineHeight: '1.5',     // better readability
+      marginBottom:"120px"
     }}>
       
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: '32px', color: '#222' }}>{basicInfo.name}</h1> {/* bigger */}
+          <h1 style={{ margin: 0, fontSize: '52px', color: '#222' }}>{basicInfo.name}</h1> {/* bigger */}
           <p style={{ fontStyle: 'italic', color: '#555', margin: '5px 0', fontSize: '16px' }}>{basicInfo.tagline}</p>
         </div>
         <div style={{ textAlign: 'right', fontSize: '14px', color: '#555' }}>
           <div>{basicInfo.portfolio}</div>
           <div>{basicInfo.mobile}</div>
-          <div>{basicInfo.dob}</div>
+<div>
+  {basicInfo.dob
+    ? new Date(basicInfo.dob).toLocaleDateString("en-GB")
+    : ""}
+</div>
+
+
           <div>{basicInfo.address}</div>
         </div>
       </div>
@@ -38,14 +49,45 @@ export const Template1 = ({ basicInfo, skills, education, projects }) => {
       </section>
 
       {/* Skills */}
-      <section style={{ marginBottom: '20px' }}>
-        <h2 style={{ borderBottom: '2px solid #007BFF', paddingBottom: '5px', color: '#007BFF', fontSize: '20px' }}>Skills</h2>
-        <ul style={{ marginTop: '10px', paddingLeft: '20px', listStyleType: 'disc', color: '#333' }}>
-          {skills.map((s, i) => (
-            <li key={i} style={{ marginBottom: '5px', fontSize: '16px' }}>{s}</li>
-          ))}
-        </ul>
-      </section>
+<section style={{ marginBottom: "20px" }}>
+  <h2
+    style={{
+      borderBottom: "2px solid #007BFF",
+      paddingBottom: "5px",
+      color: "#007BFF",
+      fontSize: "20px",
+    }}
+  >
+    Skills
+  </h2>
+
+  <div
+    style={{
+      display: "flex",
+      gap: "40px",
+      marginTop: "10px",
+    }}
+  >
+    {/* LEFT COLUMN */}
+    <ul style={{ listStyle: "disc", paddingLeft: "20px", flex: 1 }}>
+      {skills.slice(0, 7).map((s, i) => (
+        <li key={i} style={{ marginBottom: "6px", fontSize: "16px" }}>
+          {s}
+        </li>
+      ))}
+    </ul>
+
+    {/* RIGHT COLUMN */}
+    <ul style={{ listStyle: "disc", paddingLeft: "20px", flex: 1 }}>
+      {skills.slice(7, 14).map((s, i) => (
+        <li key={i} style={{ marginBottom: "6px", fontSize: "16px" }}>
+          {s}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
 
       {/* Education */}
       <section style={{ marginBottom: '20px' }}>

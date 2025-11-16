@@ -1,22 +1,36 @@
-/* green */
+/* DARK GREEN NEON – Softer, Less White, Balanced Contrast */
 :root{
-  --bg-opacity: 0.1; /* Slightly increased opacity for a more visible gradient glow */
-  --card-bg: rgba(255,255,255,0.02);
-  --card-border: rgba(255,255,255,0.1);
-  --glass-blur: 10px;
-  
-  /* NEON ACCENTS: Aqua, Cyan, and Lime for a vivid, modern gradient */
-  /* These HSL values use high saturation (S) and medium lightness (L) for a glow effect */
-  --accent-1: 175 100% 50%; /* Pure Cyan/Aqua */
-  --accent-2: 150 100% 50%; /* Vivid Green/Lime */
-  --accent-3: 195 100% 55%; /* Bright Sky Blue */
-  
-  --text: 0 0% 98%;    /* Near White for main text */
-  --muted: 0 0% 75%;    /* Light Gray for muted text */
-  --shadow: 0 10px 30px rgba(0,0,0,0.8);
+  /* Background softened from pure black to deep charcoal */
+  --bg-opacity: 0.08;
+  --bg: hsl(0 0% 7%);          /* Deep charcoal */
+  --bg-alt: hsl(0 0% 10%);      /* Slightly lighter dark */
+
+  /* Cards: darker + subtle transparency */
+  --card-bg: rgba(20, 20, 20, 0.55);
+  --card-border: rgba(255,255,255,0.06);
+
+  /* Glass blur */
+  --glass-blur: 14px;
+
+  /* Neon Accents (same hues but tuned darker for reduced brightness) */
+  --accent-1: 175 95% 45%;   /* Cyan glow */
+  --accent-2: 150 95% 45%;   /* Neon lime green */
+  --accent-3: 195 95% 50%;   /* Aqua blue */
+
+  /* Text: NO MORE BRIGHT WHITE */
+  --text: 0 0% 90%;          /* Off-white, easy on eyes */
+  --text-soft: 0 0% 75%;      /* Softer gray */
+  --muted: 0 0% 60%;          /* Muted UI gray */
+
+  /* Shadow */
+  --shadow: 0 10px 35px rgba(0,0,0,0.75);
+
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
 /* Reset + layout (NO CHANGE) */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
@@ -290,11 +304,11 @@ body::after{
 .jobspart{
   z-index: 9999999;
   position:sticky;
-      top:10;
+      top:0;
       height:fit-content;
       width:100%;
       overflow: hidden;
-      margin-top: -90px;
+      margin-top: -1500px;
     }
 
     .rolespart{
@@ -309,6 +323,75 @@ body::after{
         text-align: center;
         font-size: 8px;
 
+}
+
+.resume-builder-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 30px;
+}
+
+.left-notes, .right-notes {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 70px;
+  justify-content: center;
+}
+
+.center-form {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  
+}
+
+.resumeform {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px;
+  backdrop-filter: blur(var(--glass-blur)) saturate(100%);
+  box-shadow: var(--shadow);
+  transition: transform 450ms cubic-bezier(.2,.9,.2,1), box-shadow 450ms;
+  width: 100%;
+  max-width: 400px;
+}
+
+.note-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(var(--glass-blur)) saturate(100%);
+  box-shadow: var(--shadow);
+  transition: transform 450ms cubic-bezier(.2,.9,.2,1), box-shadow 450ms;
+  text-align: center;
+}
+
+.note-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+}
+
+.note-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: hsl(var(--text));
+}
+
+.note-card p {
+  margin: 0;
+  font-size: 10px;
+  color: hsl(var(--text-soft));
 }
 
 #rolehead{
@@ -668,3 +751,42 @@ pointer-events: none;
   max-width: 100px;
   word-wrap: break-word;
 }
+
+@page {
+  size: A4;
+  margin: 10mm; /* Print margins */
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .resume-page {
+    width: 190mm !important;
+    min-height: 257mm !important;
+    padding: 0mm !important;
+    box-sizing: border-box;
+  }
+}
+
+.pdf-wrapper {
+  padding: 0mm 0mm;   /* top/bottom: 25mm, left/right: 15mm */
+  box-sizing: border-box;
+}
+
+/* Forgot Password Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+

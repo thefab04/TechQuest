@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Roadmap from "./pages/Roadmap";
+import ResumePage from "./pages/ResumePage";
 import Login from "./components/login.jsx";
 import Signup from "./components/signup.jsx";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -40,8 +41,10 @@ function AppContent() {
             element={isAuthenticated ? <Roadmap /> : <Navigate to="/login" />}
           />
 
-          
-
+          <Route
+            path="/resume"
+            element={isAuthenticated ? <ResumePage /> : <Navigate to="/login" />}
+          />
 
         </Routes>
       </main>

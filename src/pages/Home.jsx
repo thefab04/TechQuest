@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RoadmapCard from "../components/RoadmapCard";
 import { Cloud, Cybersecurity, DataAI, Design, DevRoles, Testing } from "../components/Roles";
-import ResumeBuilder from "../components/resumebuild";
+
 import Suggestion from "../components/suggestion";
 import About from "./About";
 import ProgressPieChart from "../components/ProgressPieChart";
@@ -16,17 +16,31 @@ const roleLevels = {
   "Mobile App Developer": 10,
   "Game Developer": 10,
   "Embedded Systems Developer": 10,
-  "Cloud Engineer": 10,
-  "Cybersecurity Analyst": 10,
-  "Data Scientist": 10,
-  "Data Analyst": 10,
-  "Data Engineer": 10,
-  "UI/UX Designer": 10,
-  "Graphic Designer": 10,
-  "Product Designer": 10,
-  "Software Tester": 10,
-  "QA Engineer": 10,
-  "Automation Tester": 10,
+
+  "Cloud Engineer": 11,
+  "DevOps Engineer":13,
+  "Site Reliability Engineer":11,
+  "Platform Engineer":12,
+
+  "Cybersecurity Analyst": 9,
+  "Ethical Hacker":10,
+  "SOC Analyst":9,
+  "Cloud Security Engineer":6,
+  "Security Architect": 6,
+
+  "Data Scientist": 9,
+  "Data Analyst": 6,
+  "Data Engineer": 8,
+  "Machine learning Engineer":8,
+  "AI Engineer":6,
+
+  "UI-UX Designer":7,
+  "Game Designer": 7,
+  "Product Designer": 7,
+
+  "Performance Tester": 7,
+  "QA Engineer": 7,
+  "Test Automation Engineer": 7,
 };
 
 const Home = () => {
@@ -52,7 +66,8 @@ const Home = () => {
 
       // Fetch user progress if logged in
       if (user?._id) {
-        fetch(`https://techquest-backend.onrender.com/api/progress/${user._id}`)
+        //fetch(`https://techquest-backend.onrender.com/api/progress/${user._id}`)
+        fetch(`https://localhost:5000/api/progress/${user._id}`)
           .then((res) => res.json())
           .then((data) => setProgress(data))
           .catch((err) => console.error("Error fetching progress:", err));
@@ -73,7 +88,8 @@ const Home = () => {
           </div>
 
           <div className="glass3">
-            <ResumeBuilder />
+            <h2 id="role-heading1">Create your resume here</h2>
+            <button onClick={() => navigate('/resume')} className="animated-button">Go to Resume Builder</button>
           </div>
 
           <div className="glass3">
