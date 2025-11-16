@@ -9,7 +9,6 @@ import tplogo from "../assets/tplogo_white_png.png";
 function Login() {
   const [emailOrMobile, setEmailOrMobile] = useState("");
   const [password, setPassword] = useState("");
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
   const navigate = useNavigate();
   const { login, guestLogin } = useAuth();
 
