@@ -149,7 +149,7 @@ const downloadPDF = () => {
   document.body.appendChild(container);
 
   const opt = {
-    margin: 0,
+    margin: [1,0,15,0],
     filename: `${basicInfo.name || "resume"}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true },

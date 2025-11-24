@@ -63,17 +63,17 @@ export const Template4 = ({ basicInfo, skills, education, projects }) => (
     <section style={{ marginBottom: "25px" }}>
       <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px" }}>Education</h2>
       {education.map((edu, i) => (
-        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
+        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}  class="section-block">
           <strong>{edu.school}</strong> | {edu.degree} | {edu.cgpa}
         </div>
       ))}
     </section>
 
     {/* Projects / Experience */}
-    <section>
+    <section class="section-block">
       <h2 style={{ fontSize: "20px", borderBottom: "1px solid #ccc", paddingBottom: "8px", marginBottom: "12px" }}>Projects / Experience</h2>
       {projects.map((p, i) => (
-        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}>
+        <div key={i} style={{ marginTop: "12px", fontSize: "15px" }}  class="section-block">
           <strong>{p.title}</strong>
           <p style={{ margin: "4px 0" }}>{p.desc}</p>
         </div>

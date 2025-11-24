@@ -6,7 +6,7 @@ export const Template2 = ({ basicInfo, skills, education, projects }) => (
       minHeight: "297mm",
       margin: 0, // uniform margin on all sides
       padding: "2.5cm", // padding inside for spacing
-      border: "1px solid black",
+      
       boxSizing: "border-box",
       fontFamily: "Arial, sans-serif",
       backgroundColor: "#fff",
@@ -41,11 +41,11 @@ export const Template2 = ({ basicInfo, skills, education, projects }) => (
         </section>
 
         {/* Projects */}
-        <section style={{ marginBottom: "25px" }}>
+        <section style={{ marginBottom: "25px" }} class="section-block">
           <h2 style={{ borderBottom: "1px solid #000", paddingBottom: "8px", fontSize: "20px" }}>Projects / Experience</h2>
           <ul style={{ marginTop: "12px", paddingLeft: "22px", fontSize: "15px" }}>
             {projects.map((p, i) => (
-              <li key={i} style={{ marginBottom: "12px" }}>
+              <li key={i} style={{ marginBottom: "12px" }}  class="section-block">
                 <strong>{p.title}</strong>
                 <p style={{ margin: "4px 0" }}>{p.desc}</p>
               </li>
@@ -71,7 +71,7 @@ export const Template2 = ({ basicInfo, skills, education, projects }) => (
           <h2 style={{ borderBottom: "1px solid #000", paddingBottom: "6px", fontSize: "18px" }}>Education</h2>
           <ul style={{ marginTop: "12px", paddingLeft: "22px", fontSize: "15px" }}>
             {education.map((edu, i) => (
-              <li key={i} style={{ marginBottom: "12px" }}>
+              <li key={i} style={{ marginBottom: "12px" }}  class="section-block">
                 <strong>{edu.school}</strong> | {edu.degree}
                 <p style={{ margin: "4px 0" }}>{edu.cgpa}</p>
               </li>

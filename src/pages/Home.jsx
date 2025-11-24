@@ -87,18 +87,18 @@ const Home = () => {
           </div>
 
           <div className="glass3">
-            <SearchBox />
-
+            <h2 id="role-heading1">Create your Resume here</h2>
+            <button onClick={() => navigate('/resume')} className="animated-button">Go to Resume Builder</button>
           </div>
 
           <div className="glass3">
-            <h2 id="role-heading1">Create your resume here</h2>
-            <button onClick={() => navigate('/resume')} className="animated-button">Go to Resume Builder</button>
+            <SearchBox />
           </div>
 
           <div className="glass3">
             <Suggestion />
           </div>
+
         </jobpart>
 
         <rolespart className="rolespart">

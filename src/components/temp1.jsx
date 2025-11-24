@@ -3,24 +3,25 @@ export const Template1 = ({ basicInfo, skills, education, projects }) => {
   return (
     <div
     className="resume-page"
-    style={{
+ style={{
       width: '210mm',        // A4 width
       minHeight: '297mm',    // A4 height
-      maxHeight: '297mm',
+      maxHeight: 'auto',
        overflow: "hidden",
       margin: '0px',
-      padding: '1.5cm',      // 2.5 cm padding all around
+      padding: '2.5cm',      // 2.5 cm padding all around
       fontFamily: 'Arial, sans-serif',
       background: 'white',
       color: '#333',
       boxSizing: 'border-box',
-      border: '1px solid #ccc',
+       
         overflowWrap: 'break-word',   // <-- this ensures long words break into next line
   wordBreak: 'break-word' ,
       fontSize: '16px',      // slightly bigger default font
       lineHeight: '1.5',     // better readability
       marginBottom:"120px"
-    }}>
+    }}
+    >
       
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
@@ -90,11 +91,11 @@ export const Template1 = ({ basicInfo, skills, education, projects }) => {
 
 
       {/* Education */}
-      <section style={{ marginBottom: '20px' }}>
+      <section style={{ marginBottom: '20px' }} class="section-block">
         <h2 style={{ borderBottom: '2px solid #007BFF', paddingBottom: '5px', color: '#007BFF', fontSize: '20px' }}>Education</h2>
         <div style={{ marginTop: '10px' }}>
           {education.map((edu, i) => (
-            <div key={i} style={{ marginBottom: '10px' }}>
+            <div key={i} style={{ marginBottom: '10px' }}  class="section-block">
               <h4 style={{ margin: '0 0 3px 0', fontSize: '18px', color: '#222' }}>{edu.school}</h4>
               <p style={{ margin: '0 0 3px 0', fontSize: '16px', fontWeight: 'bold' }}>{edu.degree}</p>
               <p style={{ margin: 0, fontSize: '14px', color: '#555' }}>{edu.cgpa}</p>
@@ -104,11 +105,11 @@ export const Template1 = ({ basicInfo, skills, education, projects }) => {
       </section>
 
       {/* Projects */}
-      <section>
+      <section class="section-block">
         <h2 style={{ borderBottom: '2px solid #007BFF', paddingBottom: '5px', color: '#007BFF', fontSize: '20px' }}>Projects / Experience</h2>
         <div style={{ marginTop: '10px' }}>
           {projects.map((p, i) => (
-            <div key={i} style={{ marginBottom: '10px' }}>
+            <div key={i} style={{ marginBottom: '10px' }} class="section-block" >
               <h4 style={{ margin: '0 0 3px 0', fontSize: '18px', color: '#222' }}>{p.title}</h4>
               <p style={{ margin: 0, fontSize: '16px', lineHeight: '1.5', color: '#555' }}>{p.desc}</p>
             </div>

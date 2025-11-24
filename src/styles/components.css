@@ -819,7 +819,7 @@ pointer-events: none;
 
 @page {
   size: A4;
-  margin: 10mm; /* Print margins */
+  margin: 100mm; /* Print margins */
 }
 
 @media print {
@@ -831,15 +831,27 @@ pointer-events: none;
   .resume-page {
     width: 190mm !important;
     min-height: 257mm !important;
-    padding: 0mm !important;
-    box-sizing: border-box;
+  
   }
 }
 
-.pdf-wrapper {
-  padding: 0mm 0mm;   /* top/bottom: 25mm, left/right: 15mm */
-  box-sizing: border-box;
+.section-block {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 2mm;
+  margin-top: 0.5cm;
 }
+.pdf-wrapper {
+  width: 100%;
+  max-width: 210mm;    
+  min-height: 297mm;
+  background: white;
+  padding: 0 0mm;
+  margin: 0 auto;
+  
+}
+
+
 
 /* Forgot Password Modal */
 .modal-overlay {

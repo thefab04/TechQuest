@@ -27,6 +27,7 @@ const Suggestion = () => {
       });
 
       if (response.ok) {
+        alert("Thank you for your feedback!");
         console.log("Feedback submitted successfully");
         setFormData({ name: "", email: "", message: "", type: "comment" });
         fetchFeedback();
