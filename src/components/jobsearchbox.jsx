@@ -1,8 +1,8 @@
 
 import React, { useState } from "react";
 
-const API_KEY = 'AIzaSyBUP4_f3KHV8GwCIPRGa2cYrIwCKBVpVbQ';
-const SEARCH_ENGINE_ID = 'c6866bc8abb954617';
+const API_KEY =process.env.REACT_APP_PSE_API_KEY;
+const SEARCH_ENGINE_ID = process.env.REACT_APP_PSE_SEARCH_ENGINE_ID;
 
 function SearchBox() {
   const [query, setQuery] = useState("");
