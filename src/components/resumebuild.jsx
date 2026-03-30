@@ -170,7 +170,11 @@ const downloadPDF = () => {
 
 
   return (
+    <>
+     
+    
     <div className="resume-builder-container">
+      
       {/* Left Side Notes */}
       <div className="left-notes">
         <Note title="" content="Keep your resume concise. Aim for 1 page if possible." />
@@ -190,10 +194,14 @@ const downloadPDF = () => {
 
       {/* Center Form */}
       <div className="center-form">
-        <h2 id="role-heading"> CREATE YOUR RESUME  </h2>
-        <br />
+       
+        <br /><br />
         {/* Form */}
+        <br />
+
         <form onSubmit={(e) => e.preventDefault()} className="resumeform">
+
+          <h2 id="role-heading"> CREATE YOUR RESUME  </h2>
         <input name="name" placeholder="Name" value={basicInfo.name} onChange={handleBasicChange} required  className="inputbox" /><br /><br />
         <input name="tagline" placeholder="Title / Tagline" value={basicInfo.tagline} onChange={handleBasicChange}  className="inputbox"/><br /><br />
         <input name="portfolio" placeholder="Portfolio / Website" value={basicInfo.portfolio} onChange={handleBasicChange}  className="inputbox"/><br /><br />
@@ -303,7 +311,9 @@ const downloadPDF = () => {
         <Note title="Template 4" content="Basic design that’s easy to fill. Great choice for beginners and students."/>
       </div>
     </div>
+    </> 
   );
 };
+
 
 export default ResumeBuilder;

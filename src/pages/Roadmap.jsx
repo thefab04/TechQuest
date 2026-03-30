@@ -139,12 +139,12 @@ function Roadmap() {
 
               <div className="card-header">
 
-                <h3 className="level-label">
+                <h2 className="level-label">
                   Level {stage.level || stage.phase}:
                   <br /><br /><br /> {stage.title}
-                </h3>
+                </h2>
               </div>
-
+<br /><br />
 
             <button
   className="animated-button3"

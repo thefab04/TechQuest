@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import tplogo1 from "../assets/tplogo_white_png.png"
+import TQ_NOBG1 from "../assets/TQ_NOBG1.png"
 
 function Navbar() {
   const { logout } = useAuth();
@@ -18,7 +18,7 @@ function Navbar() {
 
         <div className="logo">
       <Link to="/">
-      <img src={tplogo1} height="30px" width="150px"  alt="" />
+      <img src={TQ_NOBG1} height="30px" width="150px"  alt="" />
 
 
       </Link>

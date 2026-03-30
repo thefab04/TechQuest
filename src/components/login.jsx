@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import "../styles/components.css";
-import tplogo from "../assets/tplogo_white_png.png";
-
+import TQ_NOBG1 from "../assets/TQ_NOBG1.png";
 
 function Login() {
   const [emailOrMobile, setEmailOrMobile] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login, guestLogin } = useAuth();
+  
 
 
   const handleLogin = async (e) => {
@@ -42,17 +42,22 @@ function Login() {
     alert("Logged in as Guest!");
     setTimeout(() => navigate("/"), 1500);
   };
+return (
 
-  return (
-    <div className="wrap">
-      <div className="glass">
-        <div className="logo_login">
-          <img src={tplogo} height="auto" width="150px" alt="" />
-        </div>
+  
+  
+  <div className="login-page">
+
+    
+
+    {/* LEFT — LOGIN CARD */}
+    <div className="login-container">
+      <div className="glass login-card">
 
 
 
         <h4>Login</h4>
+
         <form onSubmit={handleLogin}>
           <input
             type="text"
@@ -62,8 +67,9 @@ function Login() {
             required
             className="inputbox"
           />
-          <br />
-          <br />
+
+          <br /><br />
+
           <input
             type="password"
             placeholder="Password"
@@ -72,8 +78,9 @@ function Login() {
             required
             className="inputbox"
           />
-          <br />
-          <br />
+
+          <br /><br />
+
           <button type="submit" className="animated-button">
             Sign In
           </button>
@@ -86,13 +93,39 @@ function Login() {
         </p>
 
         <p>or</p>
+
         <button onClick={handleGuest} className="animated-button">
           Login as Guest
         </button>
-      </div>
 
+
+      </div>
     </div>
-  );
+
+
+    {/* RIGHT — INFO PANEL */}
+    <div className="login-info">
+
+            <div className="logo_login">
+          <img src={  TQ_NOBG1 } width="250px" alt="" />
+        </div>
+
+<h2>Welcome to TechQuest</h2>
+            <h4>Every click brings you one step closer to success.</h4>
+          
+          
+
+
+<ul className="features">
+  <li> Structured tech learning roadmaps</li>
+  <li> Beginner-friendly guided paths</li>
+  <li> Learn skills that match real careers</li>
+  <li> Build resumes easily</li>
+</ul>
+    </div>
+
+  </div>
+);
 }
 
 export default Login;

@@ -8,6 +8,7 @@ import About from "./About";
 import ProgressPieChart from "../components/ProgressPieChart";
 import { useAuth } from "../context/AuthContext";
 
+
 // Define total levels for each role
 const roleLevels = {
   "Frontend Developer": 10,
@@ -48,6 +49,7 @@ const Home = () => {
   const [progress, setProgress] = useState([]);
   const navigate = useNavigate();
   const { isGuest } = useAuth();
+  const [showPopup, setShowPopup] = useState(false);
 
   /*const user = JSON.parse(localStorage.getItem("user") || "null");*/
   const storedUser = localStorage.getItem("user");
@@ -82,9 +84,7 @@ const Home = () => {
     <>
       <section className="main-grid">
         <jobpart className="jobspart">
-          <div className="glass3">
-            <About />
-          </div>
+
 
           <div className="glass3">
             <h2 id="role-heading1">Create your Resume here</h2>
@@ -94,6 +94,27 @@ const Home = () => {
           <div className="glass3">
             <SearchBox />
           </div>
+                    <div className="glass3">
+            <h2 id="role-heading1">About TechQuest</h2>
+            <button className="animated-button"
+  onClick={() => setShowPopup(true)}>
+              Explore</button>
+          </div>
+          {showPopup && (
+  <div className="popup-overlay">
+    <div className="popup-box">
+
+      <button
+        className="close-btn"
+        onClick={() => setShowPopup(false)}
+      >
+        ✕
+      </button>
+      <About />
+
+    </div>
+  </div>
+)}
 
           <div className="glass3">
             <Suggestion />
@@ -103,14 +124,18 @@ const Home = () => {
 
         <rolespart className="rolespart">
           <div>
-            <p id="welcometext">Hello, {username || "Guest"}</p>
-            <h5 id="paratext">Welcome to Tech Quest</h5>
-            <p id="paratext">Every click brings you one step closer to success.</p>
+          
+          <p id="welcometext">Hello, {username || "Guest..."}</p>
+<br />
+            <h2 id="Welcome">Welcome to <b>TechQuest</b></h2>
+            <p id="subline">Every click brings you one step closer to success...</p>
+          
+            
 
             {/* Show user progress summary if available */}
             {progress.length > 0 && (
               <div className="progress-summary glass3">
-                <h4>Your Progress:</h4>
+                <h2>Your Progress:</h2>
                 <div className="progress-pie-charts">
                   {progress.map((p, i) => (
                     <ProgressPieChart
@@ -128,8 +153,9 @@ const Home = () => {
           <br /><br /><br /><br /><br /><br />
 
           {/* Developer Roles */}
-          <div className="glass2">
-            <h6 id="role-heading">Explore Roadmaps</h6>
+          <div className="glass1">
+            <h1>EXPLORE ROADMPAS</h1>
+            <div className="glass2">
             <h2 id="role-heading">DEVELOPER ROLES</h2>
             <div className="roadmap-container">
               {DevRoles.map((item, index) => (
@@ -144,6 +170,7 @@ const Home = () => {
               ))}
             </div>
           </div>
+          
 
           <br />
 
@@ -238,6 +265,8 @@ const Home = () => {
                 </div>
               ))}
             </div>
+          </div>
+
           </div>
         </rolespart>
       </section>

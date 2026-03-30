@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import tplogo from "../assets/tplogo_white_png.png";
+import TQ_NOBG1 from "../assets/TQ_NOBG1.png";
 
 function Signup() {
   const [name, setName] = useState("");
@@ -25,17 +25,17 @@ function Signup() {
     }
   };
 
-  return (
-    <div className="wrap">
-      <div className="glass">
-        <div className="logo_login">
-          <img src={tplogo} height="auto" width="150px" alt="" />
-        </div>
+return (
+  <div className="login-page">
 
-        
+    {/* LEFT — SIGNUP CARD */}
+    <div className="login-container">
+      <div className="glass login-card">
 
         <h4>Create Account</h4>
+
         <form onSubmit={handleSignup}>
+
           <input
             type="text"
             placeholder="Name"
@@ -44,8 +44,9 @@ function Signup() {
             required
             className="inputbox"
           />
-          <br />
-          <br />
+
+          <br /><br />
+
           <input
             type="text"
             placeholder="Email or Mobile"
@@ -54,8 +55,9 @@ function Signup() {
             required
             className="inputbox"
           />
-          <br />
-          <br />
+
+          <br /><br />
+
           <input
             type="password"
             placeholder="Create Password"
@@ -64,24 +66,49 @@ function Signup() {
             required
             className="inputbox"
           />
-          <br />
-          <br />
-          <button type="submit" className="animated-button">Sign Up</button>
+
+          <br /><br />
+
+          <button type="submit" className="animated-button">
+            Sign Up
+          </button>
+
         </form>
 
         <br />
-        <br />
+
         <p>
-          Already have an account?
-          <br />
-          <br />
-          <Link to="/login" className="animated-button">
-            Login
-          </Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
+
       </div>
     </div>
-  );
+
+
+    {/* RIGHT — INFO PANEL */}
+    <div className="login-info">
+
+            <div className="logo_login">
+          <img src={  TQ_NOBG1 } width="250px" alt="" />
+        </div>
+
+<h2>Welcome to TechQuest</h2>
+            <h4>Every click brings you one step closer to success.</h4>
+          
+          
+
+
+<ul className="features">
+  <li> Structured tech learning roadmaps</li>
+  <li> Beginner-friendly guided paths</li>
+  <li> Learn skills that match real careers</li>
+  <li> Build resumes easily</li>
+</ul>
+    </div>
+
+
+  </div>
+);
 }
 
 export default Signup;

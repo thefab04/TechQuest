@@ -16,7 +16,7 @@ const ProgressPieChart = ({ role, currentLevel, totalLevels }) => {
           cy="60"
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.1)"
+          stroke="rgba(0, 0, 0, 0.1)"
           strokeWidth="8"
         />
         {/* Progress circle */}
@@ -25,7 +25,7 @@ const ProgressPieChart = ({ role, currentLevel, totalLevels }) => {
           cy="60"
           r={radius}
           fill="none"
-          stroke="hsl(var(--accent-2))"
+          stroke="#0A5693"
           strokeWidth="8"
           strokeDasharray={strokeDasharray}
           strokeDashoffset={strokeDashoffset}

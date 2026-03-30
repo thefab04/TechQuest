@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
     "date-fns": "^4.1.0",
+    "firebase": "^12.11.0",
     "html2pdf.js": "^0.12.1",
     "mongoose": "^8.19.2",
     "nodemailer": "^7.0.10",
