@@ -1,0 +1,54 @@
+# Docker Compose file version
+# 3.9 is stable and widely supported
+# version: "3.9"
+
+# services = containers that will run together
+services:
+
+  # ---------------- BACKEND SERVICE ----------------
+  backend:
+
+    # Build Docker image using Dockerfile inside ./backend folder
+    build: ./project/backend
+
+    # Custom container name (easy to identify in docker ps)
+    container_name: techquest-backend
+
+    # Port mapping
+    # LEFT = your computer port
+    # RIGHT = container port
+    ports:
+      - "5000:5000"
+
+    # Load environment variables automatically
+    # Uses your development/staging .env file
+    env_file:
+      - ./project/backend/.env.develop
+
+    # Automatically restart container if it crashes
+    # (used in real production systems)
+    restart: always
+
+
+
+  # ---------------- FRONTEND SERVICE ----------------
+  frontend:
+
+    # Build image from frontend Dockerfile
+    build: ./project
+
+    # Friendly container name
+    container_name: techquest-frontend
+
+    # Expose frontend to browser
+    # localhost:3000 → nginx port 80 inside container
+    ports:
+      - "3000:80"
+
+    # Ensures backend starts before frontend
+    # (important when frontend calls API)
+    depends_on:
+      - backend
+
+    # Restart automatically on failure
+    restart: always
