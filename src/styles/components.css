@@ -1,0 +1,588 @@
+/* =====================================================
+   PROFESSIONAL LIGHT UI - Updated Color Palette
+   Clean • Modern • Professional
+===================================================== */
+
+:root{
+
+  /* ---------- PRIMARY COLORS ---------- */
+  --primary: #0A5693;           /* Deep Blue */
+  --primary-hover: #084570;
+  --primary-light: #5B9AC8;
+
+  /* ---------- SECONDARY COLORS ---------- */
+  --secondary: #0F1E21;         /* Dark Teal */
+  --secondary-mid: #3D5558;
+  --secondary-light: #8FA8AB;
+
+  /* ---------- TERTIARY COLORS ---------- */
+  --tertiary: #27A7B0;          /* Turquoise */
+  --tertiary-hover: #1F8A92;
+  --tertiary-light: #7FCDD2;
+
+  /* ---------- NEUTRAL COLORS ---------- */
+  --neutral-darkest: #000000;
+  --neutral-dark: #3D4142;
+  --neutral-mid: #7E8384;
+  --neutral-light: #BFC1C2;
+  --neutral-lighter: #E0E4E5;
+  --neutral-lightest: #F5F7F8;
+
+  /* ---------- BACKGROUND & SURFACES ---------- */
+  --bg: #F5F7F8;
+  --bg-alt: #ffffff;
+
+  --card-bg: #ffffff;
+  --card-border: #E0E4E5;
+
+  /* ---------- TEXT ---------- */
+  --text: #0F1E21;
+  --text-soft: #3D5558;
+  --muted: #7E8384;
+
+  /* ---------- SHADOWS ---------- */
+  --shadow: 0 4px 18px rgba(15, 30, 33, 0.08);
+  --shadow-hover: 0 10px 28px rgba(15, 30, 33, 0.12);
+
+  font-family: Inter, system-ui, -apple-system,
+               "Segoe UI", Roboto, Arial;
+}
+
+/* ---------- RESET ---------- */
+*{
+  box-sizing: border-box;
+}
+
+html, body{
+  margin: 0;
+  height: 100%;
+  justify-content: center;
+  border: #000000;
+  border-radius: 10px;
+}
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.glassnav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 10px 20px;
+  margin: 20px;
+
+  box-shadow: var(--shadow);
+  transition: .3s ease;
+}
+
+.glassnav:hover{
+  box-shadow: var(--shadow-hover);
+}
+
+.logo{
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--primary);
+}
+#Welcome{
+  font-size: 20px;
+  color: #084570;
+  text-align: center;
+}
+#subline{
+  font-size: 18px;
+  color: var(--text-soft);
+  margin-top: -5px;
+  text-align: center;
+}
+
+#linkpara{
+  color: var(--text);
+}
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.glassfooter{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 2px;
+  margin: 10px;
+  box-shadow: var(--shadow);
+  color: var(--text-soft);
+  margin-bottom: 100px;
+}
+
+.contactlist{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+/* ===============================
+   LOGIN PAGE LAYOUT
+================================ */
+
+.login-page{
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 40px 80px;
+  gap: 60px;
+}
+.login-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-info{
+  max-width: 580px;
+}
+
+.login-info h2{
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+.login-info h4{
+  font-size: 17px;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.login-info p{
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-soft);
+  margin-bottom: 25px;
+}
+
+.login-info ul{
+  padding-left: 10;
+  list-style:circle;
+  line-height: 20px;
+}
+
+.login-info li{
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 15px;
+}
+@media (max-width: 900px){
+
+  .login-page{
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+
+  .login-info{
+    text-align: center;
+    order: -1;
+  }
+}
+
+/* =====================================================
+   CARDS
+===================================================== */
+/* DARK BACKGROUND OVERLAY */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+/* POPUP BOX */
+.popup-box {
+  width: 70%;
+  max-width: 900px;
+  height: 70%;
+
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+
+  position: relative;
+  overflow-y: auto;
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+
+
+
+
+.login-card{
+  width: 380px;
+  padding: 40px 35px;
+
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.06),
+    0 2px 8px rgba(0,0,0,0.04);
+
+  background: var(--card-bg);
+}
+.glass,
+.glass1,
+.glass2,
+.glass3,
+.resumeform,
+.note-card{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: .25s ease;
+  text-align: center;
+  margin-bottom: 20px;
+
+
+}
+
+.glass:hover,
+.glass2:hover,
+.glass3:hover,
+.note-card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Card variants with accent borders */
+.glass.primary-accent{
+  border-left: 4px solid var(--primary);
+}
+
+.glass.tertiary-accent{
+  border-left: 4px solid var(--tertiary);
+}
+
+.glass.secondary-accent{
+  border-left: 4px solid var(--secondary);
+}
+
+/* =====================================================
+   TEXT
+===================================================== */
+
+#welcometext{
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+#paratext{
+  font-size: 20px;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.aboutpara{
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-soft);
+}
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.inputbox{
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+  transition: .2s;
+}
+
+.inputbox:focus{
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(10, 86, 147, .15);
+}
+
+/* Input variants */
+.inputbox.tertiary-focus:focus{
+  border-color: var(--tertiary);
+  box-shadow: 0 0 0 2px rgba(39, 167, 176, .15);
+}
+
+/* =====================================================
+   BUTTONS (PROFESSIONAL STYLE)
+===================================================== */
+
+.animated-button,
+.animated-button1,
+.animated-button3{
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.animated-button:hover,
+.animated-button1:hover,
+.animated-button3:hover{
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Button variants */
+.animated-button.tertiary,
+.animated-button1.tertiary,
+.animated-button3.tertiary{
+  background: var(--tertiary);
+}
+
+.animated-button.tertiary:hover,
+.animated-button1.tertiary:hover,
+.animated-button3.tertiary:hover{
+  background: var(--tertiary-hover);
+}
+
+.animated-button.secondary,
+.animated-button1.secondary,
+.animated-button3.secondary{
+  background: var(--secondary);
+}
+
+.animated-button.secondary:hover,
+.animated-button1.secondary:hover,
+.animated-button3.secondary:hover{
+  background: var(--neutral-darkest);
+}
+
+/* Outlined button variants */
+.animated-button.outlined{
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.animated-button.outlined:hover{
+  background: var(--primary);
+  color: white;
+}
+
+/* =====================================================
+   GRID LAYOUTS
+===================================================== */
+
+.main-grid{
+  display: grid;
+  grid-template-columns: 1fr 700px;
+  gap: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.roadmap-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: center;
+  
+}
+
+/* =====================================================
+   RESUME BUILDER
+===================================================== */
+
+.resume-builder-container{
+  display: flex;
+  gap: 40px;
+  padding: 30px;
+}
+
+.left-notes,
+.right-notes{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.center-form{
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  
+}
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+.note-card h3{
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.note-card p{
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* Note card color variants */
+.note-card.primary{
+  border-top: 3px solid var(--primary);
+}
+
+.note-card.tertiary{
+  border-top: 3px solid var(--tertiary);
+}
+
+.note-card.secondary{
+  border-top: 3px solid var(--secondary);
+}
+
+/* =====================================================
+   ROLE HEADINGS
+===================================================== */
+
+#role-heading{
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-align: center;
+  color: var(--tertiary);
+  text-transform: uppercase;
+}
+
+#role-heading1{
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.role-card-wrapper{
+  text-align: center;
+  font-size: 10px;
+  justify-content: center;
+  
+}
+/* =====================================================
+   ROADMAP GRID
+===================================================== */
+
+.roadmap-grid1{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 30px;
+
+}
+
+.role-card-wrapper{
+  border: #0A5693 1px solid;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+.logout{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo_login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =====================================================
+   PROGRESS PIE CHARTS - 3 PER ROW FIX
+===================================================== */
+
+.progress-summary .progress-pie-charts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.progress-pie-chart {
+  flex: 0 0 calc(33.33% - 14px);
+  max-width: 140px;
+  text-align: center;
+}
+
+.role-name {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Color utility classes */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-tertiary { color: var(--tertiary); }
+.text-muted { color: var(--muted); }
+
+.bg-primary { background-color: var(--primary); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-tertiary { background-color: var(--tertiary); }
+.bg-neutral-light { background-color: var(--neutral-lightest); }
+
+.border-primary { border-color: var(--primary); }
+.border-tertiary { border-color: var(--tertiary); }
+.border-secondary { border-color: var(--secondary); }
