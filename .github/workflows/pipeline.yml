@@ -37,7 +37,7 @@ jobs:
     - name: Scan Backend Image with Trivy
       uses: aquasecurity/trivy-action@master
       with: 
-        image-ref: ${{ secrets.DOCKER_USERNAME }}/techquest-backend
+        image-ref: techquest-backend:latest
         format: table  # Show results in a table format
         exit-code: 1   #Fail pipeline if vulnerability found
         ignore-unfixed: true
@@ -46,7 +46,7 @@ jobs:
     - name: Scan Frontend Image with Trivy
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: ${{ secrets.DOCKER_USERNAME }}/techquest-frontend
+        image-ref: techquest-frontend:latest
         format: table # Show results in a table format
         exit-code: 1  #Fail pipeline if vulnerability found
         ignore-unfixed: true  
