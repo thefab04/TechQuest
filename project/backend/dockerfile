@@ -1,6 +1,11 @@
 # Use official Node image
 FROM node:20-alpine
 
+# Update system packages to patch vulnerabilities
+RUN apk update && apk upgrade && \
+    rm -rf /var/cache/apk/*
+
+    
 # Create app directory inside container
 WORKDIR /app
 
@@ -18,3 +23,8 @@ EXPOSE 5000
 
 # Start application
 CMD ["npm", "start"]
+
+
+
+
+

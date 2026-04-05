@@ -32,7 +32,7 @@ jobs:
 
     # 5️⃣ Verify images built successfully
     - name: List Docker Images
-      run: docker 
+      run: docker images ls
       
     - name: Scan Backend Image with Trivy
       uses: aquasecurity/trivy-action@master
