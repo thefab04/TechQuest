@@ -32,4 +32,22 @@ jobs:
 
     # 5️⃣ Verify images built successfully
     - name: List Docker Images
-      run: docker images
+      run: docker 
+      
+    - name: Scan Backend Image with Trivy
+      uses: aquasecurity/trivy-action@master
+      with: 
+        image-ref: ${{ secrets.DOCKER_USERNAME }}/techquest-backend
+        format: table  # Show results in a table format
+        exit-code: 1   #Fail pipeline if vulnerability found
+        ignore-unfixed: true
+        severity: CRITICAL,HIGH  #Only check serious issues
+
+    - name: Scan Frontend Image with Trivy
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ secrets.DOCKER_USERNAME }}/techquest-frontend
+        format: table # Show results in a table format
+        exit-code: 1  #Fail pipeline if vulnerability found
+        ignore-unfixed: true  
+        severity: CRITICAL,HIGH #Only check serious issues
