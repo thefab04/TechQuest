@@ -28,7 +28,7 @@ jobs:
     # 4️⃣ Build Frontend Docker Image
     - name: Build Frontend Image
       run: |
-        docker build -t techquest-frontend ./src
+        docker build -t techquest-frontend ./project
 
     # 5️⃣ Verify images built successfully
     - name: List Docker Images
