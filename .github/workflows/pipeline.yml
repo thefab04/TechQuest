@@ -43,7 +43,8 @@ jobs:
         ignore-unfixed: true
         severity: CRITICAL,HIGH
         # Add this line below
-        skip-dirs: node_modules 
+        skip-dirs: /app/node_modules 
+        vuln-type: 'os,library'
 
     - name: Scan Frontend Image with Trivy
       uses: aquasecurity/trivy-action@master
@@ -54,4 +55,5 @@ jobs:
         ignore-unfixed: true  
         severity: CRITICAL,HIGH
         # Add this line below
-        skip-dirs: node_modules
+        skip-dirs: /app/node_modules
+        vuln-type: 'os,library'
