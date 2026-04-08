@@ -1,0 +1,545 @@
+/* ================================
+   GLOBAL LIGHT THEME - Updated Color Palette
+================================ */
+
+:root{
+  /* Primary Color Palette - Deep Blue */
+  --primary: #0A5693;
+  --primary-hover: #084570;
+  --primary-light: #5B9AC8;
+  
+  /* Secondary Color Palette - Dark Teal */
+  --secondary: #0F1E21;
+  --secondary-mid: #3D5558;
+  --secondary-light: #8FA8AB;
+  
+  /* Tertiary Color Palette - Turquoise */
+  --tertiary: #27A7B0;
+  --tertiary-hover: #1F8A92;
+  --tertiary-light: #7FCDD2;
+  
+  /* Neutral Palette */
+  --neutral-darkest: #000000;
+  --neutral-dark: #3D4142;
+  --neutral-mid: #7E8384;
+  --neutral-light: #BFC1C2;
+  --neutral-lighter: #E0E4E5;
+  --neutral-lightest: #F5F7F8;
+  
+  /* Background & Surface */
+  --bg: #F5F7F8;
+  --surface: #ffffff;
+  --border: #E0E4E5;
+  
+  /* Text */
+  --text: #0F1E21;
+  --subtext: #3D5558;
+  
+  /* Shadows */
+  --shadow: 0 2px 6px rgba(15, 30, 33, 0.08);
+  --shadow-hover: 0 8px 20px rgba(15, 30, 33, 0.12);
+}
+
+body{
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Roboto, Arial, sans-serif;
+}
+
+/* ================================
+   APP CONTAINER
+================================ */
+
+.App{
+  font-family: Roboto, Arial, sans-serif;
+}
+
+
+/* ================================
+   NAVBAR (Material Style with New Colors)
+================================ */
+
+.glassnav{
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  box-shadow: var(--shadow);
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.glassnav:hover{
+  box-shadow: var(--shadow-hover);
+}
+
+/* Logo */
+
+.logo{
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+
+/* Navbar menu */
+
+nav.navbar ul{
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav.navbar li{
+  cursor: pointer;
+  color: var(--subtext);
+  font-weight: 500;
+  transition: color .2s ease;
+}
+
+nav.navbar li:hover{
+  color: var(--primary);
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.glassfooter{
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: var(--subtext);
+}
+
+
+/* ================================
+   CONTACT LIST
+================================ */
+
+.contactlist{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+
+/* ================================
+   BUTTON (Material Style with Primary Color)
+================================ */
+
+.animated-button1{
+  margin-left: 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.animated-button1:hover{
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Alternate button styles using other colors */
+
+.animated-button1.tertiary{
+  background: var(--tertiary);
+}
+
+.animated-button1.tertiary:hover{
+  background: var(--tertiary-hover);
+}
+
+.animated-button1.secondary{
+  background: var(--secondary);
+}
+
+.animated-button1.secondary:hover{
+  background: var(--neutral-darkest);
+}
+
+
+/* ================================
+   ROADMAP CARD
+================================ */
+
+.roadmap-card1{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin: 12px;
+  border-radius: 12px;
+  max-width: 320px;
+  text-align: left;
+
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.roadmap-card1:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.level-label {
+  font-weight: 700;
+  font-size:13px;
+  margin: 0;
+  color: hsl(var(--text));
+
+}
+
+#rolehead{
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* Details are hidden in normal cards */
+.roadmap-details {
+  margin-top: 12px;
+  text-align: left;
+  opacity: 20%;
+  max-height:fit-content;
+  overflow: hidden;
+  transition: opacity 260ms ease, max-height 360ms ease;
+  margin-left: 20px;
+  
+}
+
+/* ACTIVE — expanded card: act like a centered modal (75% width) */
+.roadmap-card1.active {
+  text-align: left;
+  background: linear-gradient(180deg, #F5F7F8(255, 255, 255, 0.95), rgba(246, 246, 246, 0.9)); 
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(20px) saturate(100%);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.25);
+  transition: transform 450ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 1450ms;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 75vw;
+  max-width: 1800px;
+  max-height: fit-content;
+  height: fit-content;
+  transform: translate(-50%, -50%) !important;
+  z-index: 111111;           /* above overlay */
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+/* show details when expanded */
+.roadmap-card1.active .roadmap-details {
+  opacity: 1;
+  max-height: none;
+  margin-left: 0;
+}
+
+/* Close button in expanded card */
+.close-x {
+  position: sticky;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 112011111111;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.close-x:hover {
+  background: rgba(0, 0, 0, 0.25);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Overlay/blur that darkens background (below active card) */
+.overlay-blur {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+  pointer-events: all;
+  transition: opacity 300ms ease;
+}
+
+/* small responsiveness */
+@media (max-width: 1024px) {
+  .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .roadmap-grid { grid-template-columns: 1fr; gap: 16px; }
+  .roadmap-card.active { width: 94%; height: 86vh; }
+}
+
+
+.why{
+  line-height: 20.6px;
+}
+
+.level-label{
+  font-size: 14px;
+ 
+  color: #000000;
+  font-weight: 700;
+}
+/* Common UL reset and layout */
+.listlearn {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.listresources {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #000000;
+}
+
+.listresources1 {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* For "What You'll Learn" list items */
+.listbox {
+  position: relative;
+  padding-left: 24px;
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Small bullet icon before each */
+.listbox::before {
+  content: "•";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  color: #000000; /* soft blue bullet */
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Subheading styling */
+.subheadcard {
+  margin-top: 22px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0A5693;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+  .listresources {
+    display: flex;
+    flex-wrap: wrap;        /* allows wrapping if too many */
+    gap: 12px;              /* space between each item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-start; /* or center / space-between if you prefer */
+  }
+  
+
+  .listresources li {
+    flex: 0 1 auto;         /* makes items fit content naturally */
+  }
+
+.listresources a {
+  border: #1F8A92 solid 1px;
+  padding: 2px 5px;
+  color: #000000;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 10;
+  border-radius: 6px;
+  display: inline-block;  /* ensures nice button-like layout */
+  white-space: nowrap;    /* keeps text in one line */
+}
+
+.listresources a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #9ecbff;
+  transform: scale(1.03);
+  margin-left: 10px;
+}
+
+/* Optional: add a small icon for external links */
+.listresources a::after {
+  content: " ↗";
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+
+  .listresources1 {
+    display: flex;
+    flex-wrap: wrap;        /* allows wrapping if too many */
+    gap: 2px;              /* space between each item */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-start; /* or center / space-between if you prefer */
+  }
+  
+
+  .listresources1 li {
+    flex: 0 1 auto;         /* makes items fit content naturally */
+  }
+
+.listresources1 a {
+ 
+  padding: 3px 6px;
+  color: #dee6e4;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-weight: 10;
+  border-radius: 6px;
+  display: inline-block;  /* ensures nice button-like layout */
+  white-space: nowrap;    /* keeps text in one line */
+}
+
+.listresources1 a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #9ecbff;
+  transform: scale(1.03);
+  margin-left: 0px;
+}
+
+#linkpara{
+  font-size: 10px;
+}
+
+
+/* INNER CONTENT */
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* SMOOTH OPEN ANIMATION */
+@keyframes expandSmooth {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.roadmap-card1.active {
+  transform: scale(1.02);
+  border: 1px solid rgba(35, 180, 220, 0.4);
+  box-shadow: 0 0 25px rgba(0,255,170,0.15);
+}
+
+.close-x {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+
+  background: rgba(255,255,255,0.06);
+  border: none;
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.close-x:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: rotate(90deg);
+}
+
+.overlay-blur {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+/* Card variants with accent colors */
+
+.roadmap-card.primary-accent{
+  border-left: 4px solid var(--primary);
+}
+
+.roadmap-card.tertiary-accent{
+  border-left: 4px solid var(--tertiary);
+}
+
+
+/* ================================
+   SMOOTH SCROLL
+================================ */
+
+html{
+  scroll-behavior: smooth;
+}
+
+
+/* ================================
+   UTILITY CLASSES
+================================ */
+
+/* Text color utilities */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-tertiary { color: var(--tertiary); }
+.text-neutral { color: var(--neutral-mid); }
+
+/* Background color utilities */
+.bg-primary { background-color: var(--primary); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-tertiary { background-color: var(--tertiary); }
+.bg-neutral-light { background-color: var(--neutral-lightest); }

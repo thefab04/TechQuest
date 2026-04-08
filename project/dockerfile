@@ -1,0 +1,39 @@
+# ---------- Build Stage ----------
+# We use Node.js image because React needs Node to build the project
+FROM node:18 AS build
+
+# Create and set working directory inside container
+# All commands after this run inside /app
+WORKDIR /app
+
+# Copy package.json and package-lock.json first
+# (Done separately for Docker cache optimization)
+COPY package*.json ./
+
+# Install all frontend dependencies
+# This installs React, Vite/CRA deps, etc.
+RUN npm install
+
+# Copy remaining project files into container
+# (src, public, configs, etc.)
+COPY . .
+
+# Build React app for production
+# Creates optimized static files inside /app/build
+RUN npm run build
+
+
+# ---------- Production Stage ----------
+# Use lightweight Nginx server to serve static frontend files
+FROM nginx:alpine
+
+# Copy ONLY built files from previous stage
+# Multi-stage build keeps final image small
+COPY --from=build /app/build /usr/share/nginx/html
+
+# Expose port 80 (default HTTP port)
+EXPOSE 80
+
+# Start nginx server in foreground
+# Required so Docker container keeps running
+CMD ["nginx", "-g", "daemon off;"]
